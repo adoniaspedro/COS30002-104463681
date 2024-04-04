@@ -19,23 +19,23 @@ while working and driving:
     #On State
     if curr_state =='on':
         print("The Engine is On")
-        fuel += 1
+        fuel -= 1
         if fuel < 2 or tires < 4:
             curr_state == 'pit stop'
     
     #Pit Stop State
     elif curr_state == 'pit stop':
         print("Fixing the Car")
-        fuel -= 1
-        tires -= 1
+        fuel += 1
+        tires += 1
         if fuel > 2 and tires >= 4:
             curr_state == 'racing'
                  
     #Racing State
     elif curr_state == 'racing':
         print("Vrrrooooooooommmmmmmmmmmmmmmm")
-        fuel += 1
-        tires += 1
+        fuel -= 1
+        tires -= 1
         if fuel >= 1:
             curr_state = 'on'
             
