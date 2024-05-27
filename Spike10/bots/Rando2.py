@@ -2,18 +2,20 @@ from random import choice
 
 class Rando2(object):
     def update(self, gameinfo):
-        #Only send one fleet at a time (assuming the logic goes here)
-        if gameinfo.my_fleets:
-            return
     
-            src = max(gameinfo.my_planets.values(), key=lambda p: p.num_ships)
+        src = max(gameinfo._my_planets().values(), key=lambda p: p.ships)
 
-            #Find a target planet with the minimum number of ships
-            dest = min(gameinfo.not_my_planets.values(), key=lambda p: p.num_ships)
+        #Find a target planet with the minimum number of ships.
+        dest = min(gameinfo._not_my_planets().values(), key=lambda p: p.ships)
+        #Launch new fleet if there's enough ships
+        if src.ships > 10:
+                gameinfo.planet_order(src, dest, int(src.ships * 0.75))
         
-            #OR (alternatively), use an inverse proportional maximum search. . .
-            dest = max(gameinfo.not_my_planets.values(),
-                       key=lambda p: 1.0 / (1 + p.num_ships))
+        #gameinfo.planet_order(src, dest, src.num_ships)
+
+
+
+
                    
     
         
